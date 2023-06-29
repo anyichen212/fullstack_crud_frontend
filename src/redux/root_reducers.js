@@ -1,14 +1,8 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import { combineReducers } from "redux";
+import CampusReducer from "./campuses/campusesReducer";
 
-export const root_reducers = (props) => {
-  return (
-    <div>root_reducers</div>
-  )
-}
+const rootReducer = combineReducers({
+  campus: CampusReducer,
+});
 
-const mapStateToProps = (state) => ({})
-
-const mapDispatchToProps = {}
-
-export default connect(mapStateToProps, mapDispatchToProps)(root_reducers)
+export default rootReducer;
