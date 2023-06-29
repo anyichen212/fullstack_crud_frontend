@@ -1,14 +1,18 @@
 import React from 'react'
 import './App.css';
 
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useParams } from "react-router-dom";
 
 //import pages
 import Home from './pages/Home';
 import AllCampus from './pages/AllCampus';
 import AllStudents from './pages/AllStudents';
+import Student from './pages/Student';
+import Campus from './pages/Campus';
+import Error from './pages/Error';
 
 function App() {
+
   return (
     <Router>
     {
@@ -35,6 +39,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/campus" element={<AllCampus />} />
         <Route path="/students" element={<AllStudents />} />
+        <Route path="/campus/:campusid" element={<Campus />}/>
+        <Route path="/students/:studentid" element={<Student />}/>
+        <Route path="*" element={<Error />} />
       </Routes>
     </Router>
   );
