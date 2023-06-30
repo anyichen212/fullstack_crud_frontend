@@ -24,3 +24,23 @@ export const fetchAllCampusThunk = () => {
         }
     }
 };
+
+//create new campus
+export const createNewCampus = () => {
+    console.log("CreateNewCampus Action");
+
+    return {
+        type: CampusType.CREATE_NEW_CAMPUS,
+    };
+};
+
+export const createNewCampusThunk = (formData) => {
+    return async(dispatch) => {
+        try {
+            const createNewCampus = await axios.post("http://localhost:8080/api/campus", formData);
+            dispatch(createNewCampus());
+        } catch (error) {
+            console.log("createNewCampusThunk error : ", error);
+        }
+    }
+}

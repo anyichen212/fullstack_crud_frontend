@@ -9,6 +9,7 @@ import AllCampus from './pages/AllCampus';
 import AllStudents from './pages/AllStudents';
 import Student from './pages/Student';
 import Campus from './pages/Campus';
+import AddCampus from './pages/AddCampus';
 import Error from './pages/Error';
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/campus" element={<AllCampus />} />
         <Route path="/students" element={<AllStudents />} />
         <Route path="/campus/:campusid" element={<Campus />}/>
+        <Route path="/addcampus" element={<AddCampus />} />
         <Route path="/students/:studentid" element={<Student />}/>
         <Route path="*" element={<Error />} />
       </Routes>
