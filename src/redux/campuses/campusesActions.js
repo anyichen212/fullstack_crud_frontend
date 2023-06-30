@@ -48,6 +48,28 @@ export const fetchCampusThunk = (id) => {
     }
 }
 
+//delete campus by id
+export const deleteCampus = () => {
+    console.log("DeleteCampus Action");
+
+    return {
+        type: CampusType.DELETE_CAMPUS,
+    };
+};
+
+export const deleteCampusThunk = (id) => {
+    return async(dispatch) => {
+        try {
+            const response = await axios.delete(`http://localhost:8080/api/campus/${id}`);
+            dispatch(deleteCampus(response));
+            console.log("delete res : ", response);
+        } catch (error) {
+            console.log("deleteCampusThunk error : ", error);
+        }
+        
+    }
+}
+
 //create new campus
 export const createNewCampus = () => {
     console.log("CreateNewCampus Action");
