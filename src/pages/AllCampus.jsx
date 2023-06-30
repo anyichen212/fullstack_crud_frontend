@@ -32,7 +32,7 @@ function AllCampus() {
       <div>
         <h1>AllCampus</h1>
         <div>No Campus here. Be the first to add one!</div>
-        <div><button>All Campus</button></div>
+        <div><button>ADD Campus</button></div>
       </div>
 
     )
@@ -43,7 +43,7 @@ function AllCampus() {
     <div>
       <h1>AllCampus</h1>
       <div>
-        <div><button>All Campus</button></div>
+        <div><button>ADD Campus</button></div>
         {allCampus.map((item) => {
           return <CampusCard key={item.id} campus={item} />
         })}

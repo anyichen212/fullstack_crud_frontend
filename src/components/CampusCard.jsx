@@ -4,6 +4,6 @@ export default function CampusCard(props) {
     console.log(props.campus.id);
 
   return (
-    <div>CampusCard</div>
+    <div>{props.campus.name}</div>
   )
 }
