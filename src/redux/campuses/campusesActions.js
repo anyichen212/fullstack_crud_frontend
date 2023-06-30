@@ -12,7 +12,7 @@ export const fetchAllCampus = (payload) => {
 };
 
 export const fetchAllCampusThunk = () => {
-    console.log("FerchAllCampusThunk before return")
+    console.log("FetchAllCampusThunk before return")
     return async (dispatch) => {
         try {
             console.log("FetchAllCampusThunk Run!");
@@ -24,6 +24,29 @@ export const fetchAllCampusThunk = () => {
         }
     }
 };
+
+//fetch single campus
+export const fetchCampus = (payload) => {
+    console.log("fetchCampus action");
+
+    return {
+        type: CampusType.FETCH_CAMPUS,
+        payload: payload
+    }
+}
+
+export const fetchCampusThunk = (id) => {
+    console.log(`FetchCampusThunk, fetching ${id}...`);
+
+    return async (dispatch) => {
+        try {
+            const response = await axios.get(`http://localhost:8080/api/campus/${id}`);
+            dispatch(fetchCampus(response.data));
+        } catch (error) {
+            console.log("Error in fetchCampusThunk : ", error);
+        }
+    }
+}
 
 //create new campus
 export const createNewCampus = () => {

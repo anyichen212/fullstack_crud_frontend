@@ -6,6 +6,16 @@ export const INITIAL_CAMPUS_STATE = {
     allCampus: [],
 };
 
+const SingleCampus = (state, action) => {
+    switch (action.type) {
+        case CampusType.FETCH_CAMPUS:
+            return action.payload;
+        
+        default:
+            return null;
+    }
+}
+
 const CampusReducer = (state = INITIAL_CAMPUS_STATE, action) => {
     console.log("Campus Reducer is handling actions");
 
@@ -18,4 +28,7 @@ const CampusReducer = (state = INITIAL_CAMPUS_STATE, action) => {
     }
 };
 
-export default CampusReducer;
+export {
+    CampusReducer,
+    SingleCampus,
+};
