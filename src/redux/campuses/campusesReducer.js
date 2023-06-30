@@ -11,7 +11,7 @@ const CampusReducer = (state = INITIAL_CAMPUS_STATE, action) => {
 
     switch (action.type) {
         case CampusType.FETCH_ALL_CAMPUSES:
-            return {...state, allCampus: payload };
+            return {...state, allCampus: action.payload };
         
         default:
             return state;
