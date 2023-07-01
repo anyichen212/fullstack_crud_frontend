@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllCampusThunk } from '../redux/campuses/campusesActions';
 
 import CampusCard from '../components/CampusCard';
+import { useNavigate } from 'react-router-dom';
 
 function AllCampus() {
   const allCampus = useSelector((state) => state.campus.allCampus);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -25,6 +27,12 @@ function AllCampus() {
       <h2>LOADING...</h2>
     )
   }
+
+  //trigger by addCampus button, redirect to add campus form
+  const addCampus = () => {
+    console.log("Redirect to /addCampus page");
+    navigate("/addCampus");
+  }
   
   //if no campus > campus length is 0
   if(allCampus.length === 0){
@@ -32,7 +40,7 @@ function AllCampus() {
       <div>
         <h1>AllCampus</h1>
         <div>No Campus here. Be the first to add one!</div>
-        <div><button>ADD Campus</button></div>
+        <div><button onClick={addCampus}>ADD Campus</button></div>
       </div>
 
     )
@@ -43,7 +51,7 @@ function AllCampus() {
     <div>
       <h1>AllCampus</h1>
       <div>
-        <div><button>ADD Campus</button></div>
+        <div><button onClick={addCampus}>ADD Campus</button></div>
         {allCampus.map((item) => {
           return <CampusCard key={item.id} campus={item} />
         })}

@@ -1,8 +1,12 @@
 import React from 'react'
 
-function Error() {
+function Error(props) {
+
   return (
-    <div>Page Not Found</div>
+    <div>
+      <h1>Page Not Found</h1>
+      <h2>{props.msg}</h2>
+    </div>
   )
 }
 
