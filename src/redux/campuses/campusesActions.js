@@ -89,3 +89,23 @@ export const createNewCampusThunk = (formData) => {
         }
     }
 }
+
+//edit campus
+export const editCampus = () => {
+    console.log("EditCampus Action");
+
+    return {
+        type: CampusType.EDIT_CAMPUS
+    }
+}
+
+export const editCampusThunk = (formData, id) => {
+    return async(dispatch) => {
+        try {
+            const editCampus = await axios.put(`http://localhost:8080/api/campus/${id}`, formData);
+            dispatch(editCampus());
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}

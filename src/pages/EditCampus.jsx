@@ -1,28 +1,18 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { createNewCampusThunk } from '../redux/campuses/campusesActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { editCampusThunk } from '../redux/campuses/campusesActions';
 import { useNavigate } from 'react-router-dom';
 
-function AddCampus() {
+function EditCampus() {
+    const campus = useSelector((state) => state.singleCampus);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [state, setState] = useState({
-        name: "",
-        description: "",
-        address: "",
-        city: "",
-        state: "",
-        zip: "",
-        country: "",
-        image: null,
-    });
-    //const [name, setName] = useState("");
-    //const [address, setAddress] = useState("");
+    const [state, setState] = useState(campus);
 
     const handleChange = (e) => {
         const value = e.target.value;
         if(e.target.name === "description" && value === "")
-            value = null;
+            value = "N/A";
         
         setState({
             ...state,
@@ -32,21 +22,26 @@ function AddCampus() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Submiting...", state);
+        console.log("Complete editing...", state);
         if(state.name === "" || state.address ==="" || state.city ==="" || state.state ==="" || state.country ===""){
             alert("One or More fields is empty, please fill them out.");
         } else if(state.zip.length != 5 || !(+state.zip)) {
             alert("Not A Valid Zip Code, please make sure it's a 5 digit code.");
         } else {
-            console.log("Successfully dispatch to CreateNewCampusThunk");
-            dispatch(createNewCampusThunk(state))
-            .then(res => navigate(`/campus/${state.name}`));
+            console.log("Successfully dispatch to EditNewCampusThunk");
+            dispatch(editCampusThunk(state,campus.id))
+            .then(res => navigate(`/campus/${campus.id}`));
         }
     };
 
+    //redirect back to campus without editing
+    const cancelButton = () => {
+        navigate(`/campus/${campus.id}`);
+    }
+
   return (
     <div>
-        <h1>Add A New Campus</h1>
+        <h1>Editing CAMPUS : {campus.name}</h1>
         <form onSubmit={handleSubmit}>
             <label>
                 Campus Name:
@@ -76,11 +71,12 @@ function AddCampus() {
                 Description:
                 <input name='description' type="text" value={state.description } onChange={handleChange} />
             </label>
-            <input type='submit' value="Submit" />
+            <input type='submit' value="Finish Edit" />
+            <input type='button' value="Cancel" onClick={cancelButton} />
         </form>
     </div>
     
   )
 }
 
-export default AddCampus
+export default EditCampus;

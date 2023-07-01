@@ -33,6 +33,12 @@ function Campus() {
     });
   }
 
+  //edit button onclick
+  const editCampus = () => {
+    console.log(`Editing Campus name ${singleCampus.name}, Campus id: ${singleCampus.id}... `);
+    navigate(`/campus/${singleCampus.id}/edit`);
+  }
+
   console.log("Single Campus : ", singleCampus);
 
   //loading if campus is null
@@ -48,6 +54,7 @@ function Campus() {
       <div>
         <h2>Campus : {singleCampus.name}</h2>
         <div>
+          <button onClick={editCampus}>Edit</button>
           <button onClick={deleteCampus}>Delete</button>
         </div>
       </div>
