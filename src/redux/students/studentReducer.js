@@ -21,7 +21,9 @@ const SingleStudentReducer = (state, action) => {
     switch (action.type) {
         case StudentType.CREATE_NEW_STUDENT:
             return action.payload;
-        
+        case StudentType.FETCH_STUDENT:
+            return action.payload;
+
         default:
             return null;
     }

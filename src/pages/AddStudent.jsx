@@ -32,7 +32,7 @@ function AddStudent() {
 
     useEffect(()=>{
         if(student)
-            navigate(`/student/${student.id}`);
+            navigate(`/students/${student.id}`);
     },[student]);
     
 
