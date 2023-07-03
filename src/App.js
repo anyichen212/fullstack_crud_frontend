@@ -12,6 +12,7 @@ import Campus from './pages/Campus';
 import AddCampus from './pages/AddCampus';
 import Error from './pages/Error';
 import EditCampus from './pages/EditCampus';
+import AddStudent from './pages/AddStudent';
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
         <Route path="/students" element={<AllStudents />} />
         <Route path="/campus/:campusid" element={<Campus />}/>
         <Route path="/addcampus" element={<AddCampus />} />
+        <Route path="/addstudent" element={<AddStudent />} />
         <Route path="/campus/:campusid/edit" element={<EditCampus />} />
         <Route path="/students/:studentid" element={<Student />}/>
         <Route path="*" element={<Error />} />

@@ -24,3 +24,26 @@ export const fetchAllStudentThunk = () => {
         }
     }
 };
+
+//create a new student
+export const createNewStudent = () => {
+
+    return {
+            type: StudentType.CREATE_NEW_STUDENT,
+    };
+
+};
+
+export const createNewStudentThunk = (formData) => {
+    console.log("CreateNewStudentThunk");
+
+    return async(dispatch) => {
+        try {
+            const newStudent = await axios.post("http://localhost:8080/api/student", formData);
+            dispatch(newStudent());
+        } catch (error) {
+            console.log("CreateNewStudentThunk error :", error);
+        }
+    }
+
+};
