@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchStudentThunk } from '../redux/students/studentActions';
+import { deleteStudentThunk, fetchStudentThunk } from '../redux/students/studentActions';
 
 import Error from './Error';
 
@@ -23,6 +23,12 @@ function Student() {
     fetchStudent();
   }, []);
 
+  const deleteStudent = () => {
+    console.log(`deleting student ${studentid}...`);
+    dispatch(deleteStudentThunk(studentid));
+    navigate("/students");
+  }
+
   if(loading){
     return <h1>LOADING...</h1>
   }
@@ -32,6 +38,7 @@ function Student() {
     return (
       <div>
         Student : {student.id}
+        <button onClick={deleteStudent}>Delete</button>
       </div>
     )
   }

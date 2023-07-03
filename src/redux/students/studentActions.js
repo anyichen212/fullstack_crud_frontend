@@ -74,3 +74,23 @@ export const createNewStudentThunk = (formData) => {
     }
 
 };
+
+//delete student
+export const deleteStudent = () => {
+    return {
+        type: StudentType.DELETE_STUDENT,
+    };
+}
+
+export const deleteStudentThunk = (id) => {
+    return async(dispatch) => {
+        try {
+            const res = await axios.delete(`http://localhost:8080/api/student/${id}`);
+            dispatch(deleteStudent(res));
+            console.log(`Student ${id} deleted`);
+        } catch (error) {
+            console.log("deleteCampusThunk error : ", error);
+        }
+        
+    }
+};
