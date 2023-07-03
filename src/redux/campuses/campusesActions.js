@@ -20,7 +20,7 @@ export const fetchAllCampusThunk = () => {
             console.log("FetchAllCampusThunk Complete!");
             dispatch(fetchAllCampus(response.data));
         } catch (error) {
-            console.log(Error);
+            console.log(error);
         }
     }
 };
