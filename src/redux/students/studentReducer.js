@@ -16,6 +16,18 @@ const AllStudentReducer = (state = INITIAL_STUDENT_STATE, action) => {
     }
 };
 
+//single student reducer
+const SingleStudentReducer = (state, action) => {
+    switch (action.type) {
+        case StudentType.CREATE_NEW_STUDENT:
+            return action.payload;
+        
+        default:
+            return null;
+    }
+}
+
 export {
     AllStudentReducer,
+    SingleStudentReducer,
 }

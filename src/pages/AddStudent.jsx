@@ -1,6 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { createNewStudentThunk } from '../redux/students/studentActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import validator from 'validator';
 
 function AddStudent() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const student = useSelector((state) => state.singleStudent);
     const [state, setState] = useState({
         firstName: "",
         lastName: "",
@@ -8,7 +15,7 @@ function AddStudent() {
         email: "",
         gpa: 0.0,
         campus: "",
-        image: null,
+        image: "https://www.brooklyn.edu/wp-content/uploads/NEWS-Default-1-Featured.jpg",
     });
 
     //update change when any field is change
@@ -23,10 +30,26 @@ function AddStudent() {
         });
     };
 
+    useEffect(()=>{
+        if(student)
+            navigate(`/student/${student.id}`);
+    },[student]);
+    
+
     //when submit is click
     const handleSubmit = (e) => {
         console.log("Submitting...", state);
         e.preventDefault();
+        
+        if(!validator.isEmail(state.email)){
+            alert("Not A Valid Email. Please Enter A Valid Email.");
+        } else if(state.firstName==="" || state.lastName==="" || state.email==="" || state.campus===""){
+            alert("One or More fields is empty, please fill them out.");
+        } else {
+            console.log("Successfully dispatch to CreateNewStudentThunk");
+            dispatch(createNewStudentThunk(state));
+        }
+
     };
 
   return (
@@ -63,4 +86,4 @@ function AddStudent() {
   )
 }
 
-export default AddStudent
+export default AddStudent;
