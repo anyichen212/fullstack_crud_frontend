@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css';
 
-import { BrowserRouter as Router, Routes, Route, Link, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useParams, useLocation } from "react-router-dom";
 
 //import pages
 import Home from './pages/Home';
@@ -13,6 +13,7 @@ import AddCampus from './pages/AddCampus';
 import Error from './pages/Error';
 import EditCampus from './pages/EditCampus';
 import AddStudent from './pages/AddStudent';
+import Navigate from './components/Navigate';
 
 function App() {
 
@@ -21,19 +22,7 @@ function App() {
     {
       //Navigation
     }
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/campus">Campus</Link>
-        </li>
-        <li>
-          <Link to="/students">Students</Link>
-        </li>
-      </ul>
-    </nav>
+    <Navigate />
 
     {
       //routes

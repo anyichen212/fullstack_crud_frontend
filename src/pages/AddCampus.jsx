@@ -18,9 +18,8 @@ function AddCampus() {
         country: "",
         image: null,
     });
-    //const [name, setName] = useState("");
-    //const [address, setAddress] = useState("");
 
+    //updates everytime an input field is change
     const handleChange = (e) => {
         const value = e.target.value;
         if(e.target.name === "description" && value === "")
@@ -32,6 +31,7 @@ function AddCampus() {
         });
     };
 
+    //when submit is click
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Submiting...", state);
