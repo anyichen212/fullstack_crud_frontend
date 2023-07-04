@@ -37,7 +37,7 @@ function Student() {
   } else {
     return (
       <div>
-        Student : {student.id}
+        Student : {student.id} , Campus: {student.campus.name}
         <button onClick={deleteStudent}>Delete</button>
       </div>
     )

@@ -6,6 +6,7 @@ import Error from './Error';
 
 function Campus() {
   const singleCampus = useSelector((state) => state.singleCampus);
+  //const allStudent = useSelector((state) => state.allStudent);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const {campusid} = useParams();
@@ -17,8 +18,9 @@ function Campus() {
       setLoading(true);
       console.log("Dispatch from fetch campus");
       dispatch(fetchCampusThunk(campusid))
-        .then(e => {setLoading(false)});
+        .then(e => { setLoading(false) });
     };
+
     fetchCampus();
   }, []);
 
@@ -53,6 +55,7 @@ function Campus() {
     return (
       <div>
         <h2>Campus : {singleCampus.name}</h2>
+        <div>  </div>
         <div>
           <button onClick={editCampus}>Edit</button>
           <button onClick={deleteCampus}>Delete</button>

@@ -71,19 +71,21 @@ export const deleteCampusThunk = (id) => {
 }
 
 //create new campus
-export const createNewCampus = () => {
+export const createNewCampus = (payload) => {
     console.log("CreateNewCampus Action");
 
     return {
         type: CampusType.CREATE_NEW_CAMPUS,
+        payload: payload,
     };
 };
 
 export const createNewCampusThunk = (formData) => {
     return async(dispatch) => {
         try {
-            const createNewCampus = await axios.post("http://localhost:8080/api/campus", formData);
-            dispatch(createNewCampus());
+            const newCampus = await axios.post("http://localhost:8080/api/campus", formData);
+            await dispatch(createNewCampus(newCampus.data));
+            console.log(newCampus.data);
         } catch (error) {
             console.log("createNewCampusThunk error : ", error);
         }

@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { createNewCampusThunk } from '../redux/campuses/campusesActions';
 import { useNavigate } from 'react-router-dom';
 
 function AddCampus() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const campus = useSelector((state) => state.singleCampus);
+    const allCampus = useSelector((state) => state.allCampus);
     const [state, setState] = useState({
         name: "",
         description: "",
@@ -33,6 +35,8 @@ function AddCampus() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Submiting...", state);
+        
+
         if(state.name === "" || state.address ==="" || state.city ==="" || state.state ==="" || state.country ===""){
             alert("One or More fields is empty, please fill them out.");
         } else if(state.zip.length != 5 || !(+state.zip)) {
@@ -40,9 +44,15 @@ function AddCampus() {
         } else {
             console.log("Successfully dispatch to CreateNewCampusThunk");
             dispatch(createNewCampusThunk(state))
-            .then(res => navigate(`/campus/${state.name}`));
+            .catch(error => alert(error));
+            //.then(res => navigate(`/campus/${state.name}`));
         }
     };
+
+    useEffect(()=>{
+        if(campus)
+            navigate(`/campus/${campus.id}`);
+    },[campus]);
 
   return (
     <div>
