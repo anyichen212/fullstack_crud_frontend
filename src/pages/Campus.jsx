@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { redirect, useNavigate, useParams } from 'react-router-dom';
 import { deleteCampusThunk, fetchCampusThunk } from '../redux/campuses/campusesActions';
 import Error from './Error';
+import StudentButton from '../components/StudentButton';
 
 function Campus() {
   const singleCampus = useSelector((state) => state.singleCampus);
@@ -54,11 +55,41 @@ function Campus() {
   } else {
     return (
       <div>
-        <h1>{singleCampus.name}</h1>
-        <div>{singleCampus.image}</div>
-        <div>
-          <button onClick={editCampus}>Edit</button>
-          <button onClick={deleteCampus}>Delete</button>
+        <div style={{marginTop: "-16px"}}>
+          <img 
+            style={{
+              width:"100%", 
+              objectFit:"cover", 
+              borderBottom:"5px dotted #6D5B76"
+              }} 
+            src={singleCampus.image} 
+            alt={singleCampus.name} 
+            height={400}/>
+          <div style={{display: 'flex', justifyContent:"space-between", flexWrap:"wrap"}}>
+            <h1 style={{fontSize:'70px'}}>{singleCampus.name}</h1>
+            <div style={{textAlign: 'center'}}>
+              <button className="singleButton" onClick={editCampus}>Edit</button>
+              <button className="singleButton" onClick={deleteCampus}>Delete</button>
+            </div>
+          </div>
+          <div className="campusText">
+            <p>"{singleCampus.description}"</p>
+            <div>
+              <h2>Address</h2>
+              <h4>{singleCampus.address} <br /> {singleCampus.city}, {singleCampus.state} {singleCampus.zip} <br /> {singleCampus.country}</h4>
+            </div>
+            <div>
+              <h2>Students</h2>
+              {
+                singleCampus.students && singleCampus.students.length !== 0
+                ? singleCampus.students.map((student) => {
+                  return <StudentButton student={student} />
+                })
+                : <h4>No Students From This Campus Is In The System Yet.</h4>
+              }
+            </div>
+            <p></p>
+          </div>
         </div>
       </div>
     )

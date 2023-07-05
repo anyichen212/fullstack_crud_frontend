@@ -5,8 +5,22 @@ body{
 h1 {
   color: #6D5B76;
   font-family:'Segoe UI';
+  text-transform: capitalize;
   letter-spacing: 1px;
-  margin: 15px 30px 15px 30px;
+  margin: 10px 30px 10px 30px;
+}
+
+h2 {
+  margin: 5px;
+  text-decoration: dotted underline;
+  text-transform: capitalize;
+  color: #6D5B76;
+}
+
+h4 {
+  margin: 5px;
+  text-transform: capitalize;
+  color: #986f95;
 }
 
 nav{
@@ -183,7 +197,18 @@ li{
   cursor: pointer;
 }
 
-.submit:hover {
+.singleButton {
+  background-color: #986f95;
+  color: #F8F8E5;
+  width: 150px;
+  font-size: x-large;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.submit:hover, .singleButton:hover {
   background-color: burlywood;
   color: darkslategray;
 }
@@ -196,4 +221,27 @@ label {
 
 label > div {
   font-weight: bold;
+}
+
+.campusText {
+  margin: 5px 40px 5px 40px;
+  font-size: 20px;
+}
+
+.sButton {
+  font-size: 30px;
+  font-family:'Segoe UI';
+  font-weight: bold;
+  padding: 5px;
+  padding-right: 20px;
+  margin: 5px;
+  text-transform: capitalize;
+  border-radius: 10px;
+  color: #986f95;
+  cursor: pointer;
+}
+
+.sButton:hover {
+  background-color: #986f95;
+  color: #F8F8E5;
 }
