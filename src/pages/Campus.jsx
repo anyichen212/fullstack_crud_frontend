@@ -54,8 +54,8 @@ function Campus() {
   } else {
     return (
       <div>
-        <h2>Campus : {singleCampus.name}</h2>
-        <div>  </div>
+        <h1>{singleCampus.name}</h1>
+        <div>{singleCampus.image}</div>
         <div>
           <button onClick={editCampus}>Edit</button>
           <button onClick={deleteCampus}>Delete</button>

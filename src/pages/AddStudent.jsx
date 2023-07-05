@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { createNewStudentThunk } from '../redux/students/studentActions';
+import { fetchAllCampusThunk } from '../redux/campuses/campusesActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import validator from 'validator';
@@ -8,19 +9,28 @@ function AddStudent() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const student = useSelector((state) => state.singleStudent);
+    const allCampus = useSelector((state) => state.campus.allCampus);
     const [state, setState] = useState({
         firstName: "",
         lastName: "",
         quote: "",
         email: "",
         gpa: 0.0,
-        campus: "",
+        campusId: null,
         image: "https://www.brooklyn.edu/wp-content/uploads/NEWS-Default-1-Featured.jpg",
     });
 
+    //sort campus into alphabetic order by name
+    function sortByKey(array, key) {
+        return array.sort(function(a, b) {
+            var x = a[key]; var y = b[key];
+            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+        });
+    }
+
     //update change when any field is change
     const handleChange = (e) => {
-        const value = e.target.value;
+        let value = e.target.value;
         if(e.target.name === "quote" && value === "")
             value=null;
 
@@ -30,6 +40,34 @@ function AddStudent() {
         });
     };
 
+    //match campus name to the accurate id
+    const handleIdChange = (e) => {
+        const value = e.target.value;
+
+        console.log("campus id : ", value);
+
+        if(value == -1){
+            setState({
+                ...state,
+                [e.target.name]: null,
+            });
+        }
+        else
+            setState({
+                ...state,
+                [e.target.name]: value,
+            });
+    }
+
+    //fetch all campus to selector
+    useEffect(() => {
+        const fetchAllCampus = () => {
+          return dispatch(fetchAllCampusThunk());
+        };
+        fetchAllCampus();
+      }, []);
+
+    //navigate to new student page
     useEffect(()=>{
         if(student)
             navigate(`/students/${student.id}`);
@@ -52,35 +90,143 @@ function AddStudent() {
 
     };
 
+    //back button
+    const backButton = () => {
+        navigate("/students");
+    }
+
   return (
     <div>
         <h1>Add A New Student</h1>
-        <form onSubmit={handleSubmit}>
-            <label>
-                First Name:
-                <input name="firstName" type='text' value={state.firstName} onChange={handleChange} />
+        <form className="studentForm" onSubmit={handleSubmit}>
+            <label 
+                style={{
+                    width:'90%',
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    justifyContent: 'space-between'
+                }}>
+                <div>
+                    <div style={{marginLeft: '15px'}}>*First Name:</div>
+                    <input 
+                    style={{
+                        width:'87%',
+                        margin: '5px',
+                        fontSize: '20px',
+                        borderRadius: '10px',
+                        padding: '5px 15px'
+                        }} 
+                    name="firstName" 
+                    type='text' 
+                    value={state.firstName} 
+                    onChange={handleChange} 
+                    />
+                </div>
+
+                <div>
+                    <div style={{marginLeft: '15px'}}>*Last Name:</div>
+                    <input
+                    style={{
+                        width:'87%',
+                        margin: '5px',
+                        fontSize: '20px',
+                        borderRadius: '10px',
+                        padding: '5px 15px'
+                        }} 
+                    name="lastName" 
+                    type='text' 
+                    value={state.lastName} 
+                    onChange={handleChange} 
+                    />
+                </div>
             </label>
-            <label>
-                Last Name:
-                <input name="lastName" type='text' value={state.lastName} onChange={handleChange} />
+            
+            <label 
+                style={{
+                    width:'90%',
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                }}>
+                <div style={{width: '500px'}}>
+                    <div style={{marginLeft: '15px'}}>Campus:</div>
+                    <select
+                        style={{
+                            width:'80%',
+                            margin: '5px',
+                            fontSize: '20px',
+                            borderRadius: '10px',
+                            padding: '5px 15px'
+                            }}
+                        name="campusId" 
+                        onChange={handleIdChange}
+                    >
+                        <option key={-1} value={-1}>None</option>
+                        {sortByKey(allCampus, "name").map((item) => {
+                            return <option key={item.id} value={item.id}>
+                                {item.name}
+                            </option>
+                        })}
+                    </select>
+                </div>
+
+                <div style={{width: '180px'}}>
+                    <div style={{marginLeft: '15px'}}>GPA (0.0 - 4.0):</div>
+                    <input
+                    style={{
+                            width:'80%',
+                            margin: '5px 5px 5px 5px',
+                            fontSize: '20px',
+                            borderRadius: '10px',
+                            padding: '5px 15px'
+                            }} 
+                    name="gpa" 
+                    type='number' 
+                    value={state.gpa} 
+                    onChange={handleChange} 
+                    min="0.0" 
+                    max="4.0" 
+                    step="0.1" />
+                </div>
+                
             </label>
-            <label>
-                Email:
-                <input name="email" type='email' value={state.email} onChange={handleChange} />
+
+            <label style={{width:'90%'}} >
+                <div style={{marginLeft: '15px'}}>*Email:</div>
+                <input
+                style={{
+                    width:'100%',
+                    margin: '5px',
+                    fontSize: '20px',
+                    borderRadius: '10px',
+                    padding: '5px 15px'
+                    }}
+                 name="email" 
+                 type='email' 
+                 value={state.email} 
+                 onChange={handleChange} />
             </label>
-            <label>
-                Campus:
-                <input name="campus" type='text' value={state.campus} onChange={handleChange} />
+
+
+            <label style={{width:'90%'}} >
+                <div style={{marginLeft: '15px'}}>Quote:</div>
+                <input
+                 style={{
+                    width:'100%',
+                    margin: '5px',
+                    fontSize: '20px',
+                    borderRadius: '10px',
+                    padding: '5px 15px'
+                    }}
+                 name="quote" 
+                 type='text' 
+                 value={state.quote} 
+                 onChange={handleChange} />
             </label>
-            <label>
-                GPA (0.0 - 4.0):
-                <input name="gpa" type='number' value={state.gpa} onChange={handleChange} min="0.0" max="4.0" step="0.1" />
-            </label>
-            <label>
-                Quote:
-                <input name="quote" type='text' value={state.quote} onChange={handleChange} />
-            </label>
-            <input type='submit' value='Submit' />
+            
+            <div className="formButtons">
+                <input className="submit" type='submit' value='Submit' />
+                <input className="submit" type='button' value="Back" onClick={backButton} />
+            </div>
         </form>
     </div>
   )

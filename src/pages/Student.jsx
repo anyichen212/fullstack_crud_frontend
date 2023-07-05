@@ -37,7 +37,7 @@ function Student() {
   } else {
     return (
       <div>
-        Student : {student.id} , Campus: {student.campus.name}
+        Student : {student.id} , Campus: {student.campusId === null ? "Not Enroll In any Campous in the system" : student.campus.name}
         <button onClick={deleteStudent}>Delete</button>
       </div>
     )

@@ -11,8 +11,6 @@ function EditCampus() {
 
     const handleChange = (e) => {
         const value = e.target.value;
-        if(e.target.name === "description" && value === "")
-            value = "N/A";
         
         setState({
             ...state,
@@ -42,37 +40,135 @@ function EditCampus() {
   return (
     <div>
         <h1>Editing CAMPUS : {campus.name}</h1>
-        <form onSubmit={handleSubmit}>
-            <label>
-                Campus Name:
-                <input name='name' type="text" value={state.name} onChange={handleChange} />
+        <form className="campusForm" onSubmit={handleSubmit}>
+            <label style={{width:'90%'}}>
+                <div style={{marginLeft: '15px'}}>*Campus Name:</div>
+                <input 
+                style={{
+                    width:'100%',
+                    margin: '5px',
+                    fontSize: '20px',
+                    borderRadius: '10px',
+                    padding: '5px 15px'
+                    }} 
+                name='name' 
+                type="text" 
+                value={state.name} 
+                onChange={handleChange} />
             </label>
-            <label>
-                Address:
-                <input name='address' type="text" value={state.address } onChange={handleChange} />
+            <label style={{width:'90%'}}>
+                <div  style={{marginLeft: '15px'}} >*Address:</div>
+                <input
+                style={{
+                    width:'100%',
+                    margin: '5px',
+                    fontSize: '20px',
+                    borderRadius: '10px',
+                    padding: '5px 15px'
+                    }}
+                 name='address' 
+                 type="text" 
+                 value={state.address } 
+                 onChange={handleChange} />
             </label>
-            <label>
-                City:
-                <input name='city' type="text" value={state.city} onChange={handleChange} />
+            <label style={{
+                width:'90%',
+                display: 'flex',
+                flexWrap: 'wrap',
+                }}>
+                <div>
+                    <div style={{marginLeft: '15px'}} >*City:</div>
+                    <input
+                    style={{
+                        width:'70%',
+                        margin: '5px',
+                        fontSize: '20px',
+                        borderRadius: '10px',
+                        padding: '5px 15px'
+                        }}
+                    name='city' 
+                    type="text" 
+                    value={state.city} 
+                    onChange={handleChange} />
+                </div>
+
+                <div>
+                    <div style={{marginLeft: '15px'}} >*State:</div>
+                    <input
+                    style={{
+                        width:'70%',
+                        margin: '5px',
+                        fontSize: '20px',
+                        borderRadius: '10px',
+                        padding: '5px 15px'
+                        }}
+                    name='state' 
+                    type="text" 
+                    value={state.state} 
+                    onChange={handleChange} />
+                </div>
+
             </label>
-            <label>
-                State:
-                <input name='state' type="text" value={state.state} onChange={handleChange} />
+            <label style={{
+                width:'90%',
+                display: 'flex',
+                flexWrap: 'wrap',
+                }}>
+                <div>
+                    <div style={{marginLeft: '15px'}} >*Zip (5 digit number):</div>
+                    <input
+                    style={{
+                        width:'70%',
+                        margin: '5px',
+                        fontSize: '20px',
+                        borderRadius: '10px',
+                        padding: '5px 15px'
+                        }}
+                    name='zip' 
+                    type="text" 
+                    value={state.zip} 
+                    onChange={handleChange} 
+                    />
+                </div>
+                
+                <div>
+                    <div style={{marginLeft: '15px'}} >*Country:</div>
+                    <input
+                    style={{
+                        width:'70%',
+                        margin: '5px',
+                        fontSize: '20px',
+                        borderRadius: '10px',
+                        padding: '5px 15px'
+                        }}
+                    name='country' 
+                    type="text" 
+                    value={state.country} 
+                    onChange={handleChange} />
+                </div>
+
             </label>
-            <label>
-                Zip:
-                <input name='zip' type="text" value={state.zip} onChange={handleChange} />
+            <label style={{width:'90%'}}>
+                <div style={{marginLeft: '15px'}} >Description:</div>
+                <input
+                style={{
+                    width:'100%',
+                    height: '200%',
+                    margin: '5px',
+                    fontSize: '20px',
+                    borderRadius: '10px',
+                    padding: '5px 15px'
+                }} 
+                name='description' 
+                type="text" 
+                value={state.description } 
+                onChange={handleChange} 
+                />
             </label>
-            <label>
-                Country:
-                <input name='country' type="text" value={state.country} onChange={handleChange} />
-            </label>
-            <label>
-                Description:
-                <input name='description' type="text" value={state.description } onChange={handleChange} />
-            </label>
-            <input type='submit' value="Finish Edit" />
-            <input type='button' value="Cancel" onClick={cancelButton} />
+            <div className="formButtons">
+                <input className="submit" type='submit' value="Finish Edit" />
+                <input className="submit" type='button' value="Cancel" onClick={cancelButton} />
+            </div>
         </form>
     </div>
     
