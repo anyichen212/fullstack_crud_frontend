@@ -4,6 +4,7 @@ import { redirect, useNavigate, useParams } from 'react-router-dom';
 import { deleteCampusThunk, fetchCampusThunk } from '../redux/campuses/campusesActions';
 import Error from './Error';
 import StudentButton from '../components/StudentButton';
+import Footer from '../components/Footer';
 
 function Campus() {
   const singleCampus = useSelector((state) => state.singleCampus);
@@ -50,7 +51,7 @@ function Campus() {
   }
   else if(!singleCampus){
     return (
-      <Error msg ={`${campusid} is not a valid campus search.`}/>
+      <Error msg ={`${campusid} is not a valid campus ID.`}/>
     )
   } else {
     return (
@@ -91,6 +92,7 @@ function Campus() {
             <p></p>
           </div>
         </div>
+        <Footer />
       </div>
     )
   }

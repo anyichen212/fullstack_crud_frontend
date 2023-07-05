@@ -17,10 +17,21 @@ h2 {
   color: #6D5B76;
 }
 
+h3 {
+  color: #6D5B76;
+}
+
 h4 {
   margin: 5px;
   text-transform: capitalize;
   color: #986f95;
+}
+
+footer{
+  background-color:#6D5B76;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;   
 }
 
 nav{
@@ -104,6 +115,22 @@ li{
   color: darkslategray;
 }
 
+.studentCard, .cCard {
+  margin: 10px;
+}
+
+.xButton {
+  background-color: #e280a9;
+  margin-left: 30px;
+  padding: 5px;
+  border-bottom: none;
+}
+
+.xButton:hover {
+  background-color: brown;
+  color: burlywood;
+}
+
 .student {
   cursor: pointer;
   background-color: #6D5B76;
@@ -112,7 +139,6 @@ li{
   font-weight: bolder;
   letter-spacing: 1px;
   color:#F8F8E5;
-  margin: 10px;
   padding: 15px 10px 15px 15px;
   width: 280px;
   border-radius: 10px;
@@ -131,6 +157,7 @@ li{
   width: 300px;
   height: 277px;
   margin: 10px;
+  margin-top: 20px;
   border-radius: 10px;
   font-family:'Segoe UI';
   font-weight: bolder;
@@ -143,7 +170,7 @@ li{
   color: darkslategray;
 }
 
-.addCampusButton:active, .campus:active, .student:active, .addStudentButton:active {
+.addCampusButton:active, .addStudentButton:active {
   transform: scale(.8,.8);
 }
 
@@ -151,8 +178,7 @@ li{
   cursor: pointer;
   background-color: #6D5B76;
   width: 300px;
-  height: 277px;
-  margin: 10px;
+  height: 260px;
   border-radius: 10px;
 }
 

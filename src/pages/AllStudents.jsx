@@ -17,7 +17,7 @@ function AllStudents() {
     };
     fetchAllStudent();
     console.log("All Student:", allStudent);
-  }, []);
+  }, [allStudent]);
 
   //add new student button, navigate to addStudent page
   const addStudent = () => {

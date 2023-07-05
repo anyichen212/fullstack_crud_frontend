@@ -17,7 +17,7 @@ function AddStudent() {
         email: "",
         gpa: 0.0,
         campusId: null,
-        image: "https://www.brooklyn.edu/wp-content/uploads/NEWS-Default-1-Featured.jpg",
+        image: "https://www.st-andrews.ac.uk/dpl/1.1.0/assets/docs/images/placeholders/200x200.jpg",
     });
 
     //sort campus into alphabetic order by name

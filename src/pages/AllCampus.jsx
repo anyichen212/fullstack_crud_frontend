@@ -21,7 +21,7 @@ function AllCampus() {
     console.log("useEffect : fetch all campus");
     fetchAllCampus();
     console.log("All Campus : ", allCampus);
-  }, []);
+  }, [allCampus]);
 
   //loading if allCampus list is null
   if(!allCampus){

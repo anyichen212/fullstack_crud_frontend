@@ -3,9 +3,9 @@ import React from 'react'
 function Error(props) {
 
   return (
-    <div>
+    <div style={{textAlign: 'center'}}>
       <h1>Page Not Found</h1>
-      <h2>{props.msg}</h2>
+      <h4 style={{fontSize:'30px'}}>{props.msg}</h4>
     </div>
   )
 }

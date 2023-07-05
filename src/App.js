@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css';
 
-import { BrowserRouter as Router, Routes, Route, Link, useParams, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //import pages
 import Home from './pages/Home';
@@ -14,6 +14,7 @@ import Error from './pages/Error';
 import EditCampus from './pages/EditCampus';
 import AddStudent from './pages/AddStudent';
 import Navigate from './components/Navigate';
+import Footer from './components/Footer';
 
 function App() {
 
