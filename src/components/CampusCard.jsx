@@ -9,9 +9,9 @@ export default function CampusCard(props) {
     }
 
   return (
-    <div onClick={navigateToCampus}>
+    <div className="campus" onClick={navigateToCampus}>
         <h3>{props.campus.name}</h3>
-        <img src={props.campus.image} alt={props.campus.name} width={200}/>
+        <img src={props.campus.image} alt={props.campus.name} width={300} height={200} />
     </div>
   )
 }

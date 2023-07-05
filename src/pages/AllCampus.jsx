@@ -5,6 +5,8 @@ import { fetchAllCampusThunk } from '../redux/campuses/campusesActions';
 import CampusCard from '../components/CampusCard';
 import { useNavigate } from 'react-router-dom';
 
+import { MdAddHome } from 'react-icons/md';
+
 function AllCampus() {
   const allCampus = useSelector((state) => state.campus.allCampus);
   const dispatch = useDispatch();
@@ -49,9 +51,17 @@ function AllCampus() {
 
   return (
     <div>
-      <h1>AllCampus</h1>
-      <div>
-        <div><button onClick={addCampus}>ADD Campus</button></div>
+      <h1>All Campuses</h1>
+      <div className='allCampus'>
+        <button className='addCampusButton' onClick={addCampus}>
+          <p>
+          ADD 
+          <br />
+          New Campus
+          <br />
+          <MdAddHome size={120} />
+          </p>
+        </button>
         {allCampus.map((item) => {
           return <CampusCard key={item.id} campus={item} />
         })}

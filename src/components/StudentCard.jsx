@@ -10,7 +10,7 @@ function StudentCard(props) {
     }
 
   return (
-    <div onClick={navigateToStudent}>Name: {student.firstName} {student.lastName}</div>
+    <div className="student" onClick={navigateToStudent}> {student.firstName} {student.lastName} </div>
   )
 };
 

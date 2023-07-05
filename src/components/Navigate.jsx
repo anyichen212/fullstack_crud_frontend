@@ -1,7 +1,21 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom';
 
+//import icons
+import { MdSchool } from 'react-icons/md'
+
 function Navigate() {
+    const [hover, setHover] = useState(false);
+
+    //trigger icon hover
+    const mouseEnter = () => {
+        setHover(true);
+    }
+
+    const mouseLeave = () => {
+        setHover(false);
+    }
+
     //assigning location variable
   const location = useLocation();
 
@@ -15,6 +29,15 @@ function Navigate() {
     <Fragment>
     <nav>
     <ul>
+        <MdSchool  
+            size='40px' 
+            style ={{
+                color: hover ? '#DEB887' : '#F8F8E5',
+                margin: '2px 10px 2px -20px'
+            }}
+            onMouseEnter={mouseEnter}
+            onMouseLeave={mouseLeave}
+        />
       <li>
         <Link
           className={getLocation[1] === "" ? "navLinkActive" : "navLink"}
@@ -25,7 +48,7 @@ function Navigate() {
         <Link
           className={getLocation[1] === "campus" ? "navLinkActive" : "navLink"}
           to="/campus"
-        >Campus</Link>
+        >Campuses</Link>
       </li>
       <li>
         <Link 

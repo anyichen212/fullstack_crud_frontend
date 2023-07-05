@@ -2,6 +2,13 @@ body{
   background-color: #E1DBF0;
 }
 
+h1 {
+  color: #6D5B76;
+  font-family:'Segoe UI';
+  letter-spacing: 1px;
+  margin: 15px 30px 15px 30px;
+}
+
 nav{
   background-color:#6D5B76;
 }
@@ -45,4 +52,148 @@ li{
   text-transform: uppercase;
   border-radius: 1px;
   border-bottom: 5px solid slateblue;
+}
+
+
+.allCampus, .allStudent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.allCampus {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.allStudent {
+  justify-content: space-evenly;
+}
+
+.addStudentButton {
+  background-color: #c4bfe3;
+  color: #986f95;
+  cursor: cell;
+  font-family:'Segoe UI';
+  font-size: large;
+  font-weight: bolder;
+  font-size: large;
+  letter-spacing: 1px;
+  width: 280px;
+  margin: 10px;
+  padding: 10px 10px 10px 0px;
+  border-radius: 10px;
+  border: 5px dotted #6D5B76;
+}
+
+.addStudentButton:hover {
+  background-color: burlywood;
+  color: darkslategray;
+}
+
+.student {
+  cursor: pointer;
+  background-color: #6D5B76;
+  font-family:'Segoe UI';
+  font-size: large;
+  font-weight: bolder;
+  letter-spacing: 1px;
+  color:#F8F8E5;
+  margin: 10px;
+  padding: 20px 10px 10px 15px;
+  width: 280px;
+  border-radius: 10px;
+}
+
+.student:hover {
+  background-color: burlywood;
+  color: darkslategray;
+}
+
+
+.addCampusButton {
+  background-color: #c4bfe3;
+  color: #986f95;
+  cursor: cell;
+  width: 300px;
+  height: 277px;
+  margin: 10px;
+  border-radius: 10px;
+  font-family:'Segoe UI';
+  font-weight: bolder;
+  font-size: 30px;
+  border: 5px dotted #6D5B76;
+}
+
+.addCampusButton:hover {
+  background-color: burlywood;
+  color: darkslategray;
+}
+
+.addCampusButton:active, .campus:active, .student:active, .addStudentButton:active {
+  transform: scale(.8,.8);
+}
+
+.campus {
+  cursor: pointer;
+  background-color: #6D5B76;
+  width: 300px;
+  height: 277px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.campus:hover {
+  background-color: burlywood;
+}
+
+.campus > h3 {
+  font-family:'Segoe UI';
+  color:#F8F8E5;
+  margin-left: 20px;
+}
+
+.campus:hover > h3 {
+  margin-left: 0;
+  color: darkslategray;
+  text-align: center;
+  font-weight: 1000;
+}
+
+.campus > img {
+  border-top: 5px solid burlywood;;
+  object-fit: cover;
+}
+
+.campusForm {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.formButtons {
+  text-align: center;
+}
+
+.submit {
+  width: 150px;
+  font-size: large;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background-color: burlywood;
+  color: darkslategray;
+}
+
+label {
+  margin: 10px;
+  font-size: 20px;
+  max-width: 700px;
+}
+
+label > div {
+  font-weight: bold;
 }

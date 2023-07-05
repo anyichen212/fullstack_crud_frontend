@@ -32,8 +32,8 @@ function Student() {
   if(loading){
     return <h1>LOADING...</h1>
   }
-  else if(!student) {
-    <Error msg={`Not a valid student id`}/>
+  else if(student == null) {
+    return <Error msg={`Not a valid student id`}/>
   } else {
     return (
       <div>
