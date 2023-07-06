@@ -40,9 +40,22 @@ function AllCampus() {
   if(allCampus.length === 0){
     return (
       <div>
-        <h1>AllCampus</h1>
-        <div>No Campus here. Be the first to add one!</div>
-        <div><button onClick={addCampus}>ADD Campus</button></div>
+        <h1>All Campus</h1>
+        <div style={{textAlign:'center'}}>
+          <h4 style={{fontSize:'30px'}}>No Campus here. Be the first to add one!</h4>
+          <div>
+            <button className='addCampusButton' onClick={addCampus}>
+              <p>
+              ADD 
+              <br />
+              New Campus
+              <br />
+              <MdAddHome size={120} />
+              </p>
+            </button>
+        </div>
+        </div>
+
       </div>
 
     )

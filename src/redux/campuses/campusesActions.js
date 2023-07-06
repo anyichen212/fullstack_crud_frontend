@@ -16,7 +16,7 @@ export const fetchAllCampusThunk = () => {
     return async (dispatch) => {
         try {
             console.log("FetchAllCampusThunk Run!");
-            const response = await axios.get("http://localhost:8080/api/campus");
+            const response = await axios.get(`${process.env.REACT_APP_VERCEL_URL}campus`);
             console.log("FetchAllCampusThunk Complete!");
             dispatch(fetchAllCampus(response.data));
         } catch (error) {
@@ -40,7 +40,7 @@ export const fetchCampusThunk = (id) => {
 
     return async (dispatch) => {
         try {
-            const response = await axios.get(`http://localhost:8080/api/campus/${id}`);
+            const response = await axios.get(`${process.env.REACT_APP_VERCEL_URL}campus/${id}`);
             dispatch(fetchCampus(response.data));
         } catch (error) {
             console.log("Error in fetchCampusThunk : ", error);
@@ -60,7 +60,7 @@ export const deleteCampus = () => {
 export const deleteCampusThunk = (id) => {
     return async(dispatch) => {
         try {
-            const response = await axios.delete(`http://localhost:8080/api/campus/${id}`);
+            const response = await axios.delete(`${process.env.REACT_APP_VERCEL_URL}campus/${id}`);
             dispatch(deleteCampus(response));
             console.log("delete res : ", response);
         } catch (error) {
@@ -83,7 +83,7 @@ export const createNewCampus = (payload) => {
 export const createNewCampusThunk = (formData) => {
     return async(dispatch) => {
         try {
-            const newCampus = await axios.post("http://localhost:8080/api/campus", formData);
+            const newCampus = await axios.post(`${process.env.REACT_APP_VERCEL_URL}campus`, formData);
             await dispatch(createNewCampus(newCampus.data));
             console.log(newCampus.data);
         } catch (error) {
@@ -104,7 +104,7 @@ export const editCampus = () => {
 export const editCampusThunk = (formData, id) => {
     return async(dispatch) => {
         try {
-            const editCampus = await axios.put(`http://localhost:8080/api/campus/${id}`, formData);
+            const editCampus = await axios.put(`${process.env.REACT_APP_VERCEL_URL}campus/${id}`, formData);
             dispatch(editCampus());
         } catch (error) {
             console.log(error);

@@ -16,7 +16,7 @@ export const fetchAllStudentThunk = () => {
 
     return async (dispatch) => {
         try {
-            const res = await axios.get("http://localhost:8080/api/student");
+            const res = await axios.get(`${process.env.REACT_APP_VERCEL_URL}student`);
             console.log("FetchAllStudentThunk Complete!")
             dispatch(fetchAllStudent(res.data));
         } catch (error) {
@@ -41,7 +41,7 @@ export const fetchStudentThunk = (id) => {
 
     return async (dispatch) => {
         try {
-            const response = await axios.get(`http://localhost:8080/api/student/${id}`);
+            const response = await axios.get(`${process.env.REACT_APP_VERCEL_URL}student/${id}`);
             dispatch(fetchStudent(response.data));
         } catch (error) {
             console.log("Error in fetchStudentThunk :", error);
@@ -66,7 +66,7 @@ export const createNewStudentThunk = (formData) => {
 
     return async(dispatch) => {
         try {
-            const newStudent = await axios.post("http://localhost:8080/api/student", formData);
+            const newStudent = await axios.post(`${process.env.REACT_APP_VERCEL_URL}student`, formData);
             await dispatch(createNewStudent(newStudent.data));
         } catch (error) {
             console.log("CreateNewStudentThunk error :", error);
@@ -85,7 +85,7 @@ export const deleteStudent = () => {
 export const deleteStudentThunk = (id) => {
     return async(dispatch) => {
         try {
-            const res = await axios.delete(`http://localhost:8080/api/student/${id}`);
+            const res = await axios.delete(`${process.env.REACT_APP_VERCEL_URL}student/${id}`);
             dispatch(deleteStudent(res));
             console.log(`Student ${id} deleted`);
         } catch (error) {
@@ -107,7 +107,7 @@ export const editStudent = () => {
 export const editStudentThunk = (form, id) => {
     return async(dispatch) => {
         try {
-            const editStudent = await axios.put(`http://localhost:8080/api/student/${id}`, form);
+            const editStudent = await axios.put(`${process.env.REACT_APP_VERCEL_URL}student/${id}`, form);
             dispatch(editStudent());
             console.log("editStudentThunk sucess");
         } catch (error) {

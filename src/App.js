@@ -12,10 +12,10 @@ import Campus from './pages/Campus';
 import AddCampus from './pages/AddCampus';
 import Error from './pages/Error';
 import EditCampus from './pages/EditCampus';
+import EditStudent from './pages/EditStudent';
 import AddStudent from './pages/AddStudent';
 import Navigate from './components/Navigate';
 import Footer from './components/Footer';
-import EditStudent from './pages/EditStudent';
 
 function App() {
 

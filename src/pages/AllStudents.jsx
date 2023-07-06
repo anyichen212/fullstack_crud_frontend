@@ -36,8 +36,15 @@ function AllStudents() {
     return (
       <div>
         <h1> All Students </h1>
-        <div>No Student here. Add one!</div>
-        <div><button onClick={addStudent}>ADD Student</button></div>
+        <div style={{textAlign:'center'}}>
+          <h4 style={{fontSize:'30px'}}>No Student here. Add one!</h4>
+          <div>
+            <button className="addStudentButton"  onClick={addStudent}>
+            <MdPersonAdd size={40} style={{margin: "-10px 7px -10px 0"}} /> ADD Student
+            </button>
+          </div>
+        </div>
+
       </div>
 
     )
