@@ -38,6 +38,17 @@ nav{
   background-color:#6D5B76;
 }
 
+.searchNav{
+  margin-top: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.searchBar{
+  padding: 5px 5px 3px 5px;
+  vertical-align: baseline;
+}
+
 ul{
   display: flex;
   flex-wrap: wrap;
@@ -110,7 +121,7 @@ li{
   border: 5px dotted #6D5B76;
 }
 
-.addStudentButton:hover {
+.addStudentButton:hover, .b:hover {
   background-color: burlywood;
   color: darkslategray;
 }

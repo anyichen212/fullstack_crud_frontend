@@ -51,7 +51,7 @@ function Campus() {
   }
   else if(!singleCampus){
     return (
-      <Error msg ={`${campusid} is not a valid campus ID.`}/>
+      <Error msg ={`Not a valid campus.`}/>
     )
   } else {
     return (
