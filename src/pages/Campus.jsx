@@ -5,12 +5,14 @@ import { deleteCampusThunk, fetchCampusThunk } from '../redux/campuses/campusesA
 import Error from './Error';
 import StudentButton from '../components/StudentButton';
 import Footer from '../components/Footer';
+import { editStudentThunk, fetchAllStudentThunk } from '../redux/students/studentActions';
 
 function Campus() {
   const singleCampus = useSelector((state) => state.singleCampus);
-  //const allStudent = useSelector((state) => state.allStudent);
+  const allStudent = useSelector((state) => state.allStudent.allStudent);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [studentId, setStudentId] = useState(-1);
   const {campusid} = useParams();
   console.log("On single campus page, campus id:", campusid);
 
@@ -20,11 +22,24 @@ function Campus() {
       setLoading(true);
       console.log("Dispatch from fetch campus");
       dispatch(fetchCampusThunk(campusid))
-        .then(e => { setLoading(false) });
+      .then(e => { setLoading(false) });
     };
 
     fetchCampus();
+  }, [allStudent]);
+
+  //fetch all student after campus is fetch
+  useEffect(() => {
+    dispatch(fetchAllStudentThunk());
   }, []);
+
+  //sort student into alphabetic order by first name > last name
+  function sortByKey(array, key, key2) {
+    return array.sort(function(a, b) {
+        var x = a[key] + a[key2]; var y = b[key] + [key2];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+  }
 
   //delete button onclick
   const deleteCampus = () => {
@@ -41,6 +56,15 @@ function Campus() {
   const editCampus = () => {
     console.log(`Editing Campus name ${singleCampus.name}, Campus id: ${singleCampus.id}... `);
     navigate(`/campus/${singleCampus.id}/edit`);
+  }
+
+  //add a new student to campus
+  const addStudentToCampus = () => {
+    if(studentId !== -1){
+      const obj = {campusId : campusid}
+      dispatch(editStudentThunk(obj, studentId));
+      navigate(0);
+    }
   }
 
   console.log("Single Campus : ", singleCampus);
@@ -81,6 +105,26 @@ function Campus() {
             </div>
             <div>
               <h2>Students</h2>
+              <div>
+                <select
+                  style={{
+                    margin: '5px',
+                    fontSize: '18px',
+                    borderRadius: '10px',
+                    padding: '5px 15px'
+                    }}
+                  onChange={(e) => setStudentId(e.target.value)}>
+                  <option key={-1} value={-1}>None</option>
+                  {
+                    sortByKey(allStudent,"firstName","lastName").map((item) => {
+                      return <option key={item.id} value={item.id} >
+                        {item.firstName} {item.lastName}
+                      </option>
+                    })
+                  }
+                </select>
+                <button className="addButton" onClick={addStudentToCampus}>Add</button>
+              </div>
               {
                 singleCampus.students && singleCampus.students.length !== 0
                 ? singleCampus.students.map((student) => {

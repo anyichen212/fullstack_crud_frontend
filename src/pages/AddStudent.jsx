@@ -255,9 +255,7 @@ function AddStudent() {
                     Upload Image: &nbsp;&nbsp;
                     <input className="imgSubmit" id="imgSub" ref={ref} type="file" onChange={(e) => setImage(e.target.files[0])}/>
                     <input className="imgButton" type='button' value="Cancel Image" onClick={(e) => {
-                        console.log(ref.current.value);
                         ref.current.value=null;
-                        console.log(ref.current.value);
                         setImage("");
                     }}  />
                 </div>

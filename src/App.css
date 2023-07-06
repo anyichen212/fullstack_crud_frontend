@@ -294,7 +294,44 @@ label > div {
   cursor: pointer;
 }
 
-.sButton:hover {
+.sButtonInCampus {
+  font-size: 30px;
+  font-family:'Segoe UI';
+  font-weight: bold;
+  padding: 5px;
+  padding-right: 20px;
+  margin: 5px;
+  margin-right: 0;
+  text-transform: capitalize;
+  border-radius: 10px 0px 0px 10px;
+  border-right: none;
+  color: #986f95;
+  cursor: pointer;
+}
+
+.dButton {
+  font-size: 30px;
+  font-family:'Segoe UI';
+  font-weight: bold;
+  padding: 5px 20px;
+  margin: 5px;
+  margin-left: 0;
+  text-transform: capitalize;
+  border-radius: 0px 10px 10px 0px;
+  border-left: dotted ;
+  color: #986f95;
+  cursor: pointer;
+}
+
+.addButton {
+    margin: 5px;
+    margin-left: 0;
+    font-Size: 18px;
+    border-Radius: 10px;
+    padding: 5px 15px;
+}
+
+.sButton:hover, .dButton:hover, .sButtonInCampus:hover, .addButton:hover {
   background-color: #986f95;
   color: #F8F8E5;
 }
