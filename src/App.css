@@ -1,38 +1,337 @@
-.App {
+body{
+  background-color: #E1DBF0;
+}
+
+h1 {
+  color: #6D5B76;
+  font-family:'Segoe UI';
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  margin: 10px 30px 10px 30px;
+}
+
+h2 {
+  margin: 5px;
+  text-decoration: dotted underline;
+  text-transform: capitalize;
+  color: #6D5B76;
+}
+
+h3 {
+  color: #6D5B76;
+}
+
+h4 {
+  margin: 5px;
+  text-transform: capitalize;
+  color: #986f95;
+}
+
+footer{
+  background-color:#6D5B76;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;   
+}
+
+nav{
+  background-color:#6D5B76;
+}
+
+.searchNav{
+  margin-top: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.searchBar{
+  padding: 5px 5px 3px 5px;
+  vertical-align: baseline;
+}
+
+ul{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0;
+  border-bottom: 5px solid burlywood;
+}
+
+li{
+  list-style: none;
+  padding: 10px;
+}
+
+.navLink{
+  color: #F8F8E5;
+  padding: 10px;
+  font-size: large;
+  font-weight: bolder;
+  text-decoration: none;
+  font-family:'Segoe UI';
+  text-transform: uppercase;
+}
+
+.navLink:hover{
+  background-color:burlywood;
+  color: darkslategray;
+  border-radius: 1px;
+}
+
+.navLinkActive {
+  color:darkslategray;
+  background-color:burlywood;
+  padding: 10px;
+  font-size: large;
+  font-weight: bolder;
+  text-decoration: none;
+  font-family:'Segoe UI';
+  text-transform: uppercase;
+  border-radius: 1px;
+  border-bottom: 5px solid slateblue;
+}
+
+
+.allCampus, .allStudent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.allCampus {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.allStudent {
+  justify-content: space-evenly;
+}
+
+.addStudentButton {
+  background-color: #c4bfe3;
+  color: #986f95;
+  cursor: cell;
+  font-family:'Segoe UI';
+  font-size: large;
+  font-weight: bolder;
+  font-size: large;
+  letter-spacing: 1px;
+  width: 280px;
+  margin: 10px;
+  padding: 10px 10px 10px 0px;
+  border-radius: 10px;
+  border: 5px dotted #6D5B76;
+}
+
+.addStudentButton:hover, .b:hover {
+  background-color: burlywood;
+  color: darkslategray;
+}
+
+.studentCard, .cCard {
+  margin: 10px;
+}
+
+.xButton {
+  background-color: #e280a9;
+  margin-left: 30px;
+  padding: 5px;
+  border-bottom: none;
+}
+
+.xButton:hover {
+  background-color: brown;
+  color: burlywood;
+}
+
+.student {
+  cursor: pointer;
+  background-color: #6D5B76;
+  font-family:'Segoe UI';
+  font-size: large;
+  font-weight: bolder;
+  letter-spacing: 1px;
+  color:#F8F8E5;
+  padding: 15px 10px 15px 15px;
+  width: 280px;
+  border-radius: 10px;
+}
+
+.student:hover {
+  background-color: burlywood;
+  color: darkslategray;
+}
+
+
+.addCampusButton {
+  background-color: #c4bfe3;
+  color: #986f95;
+  cursor: cell;
+  width: 300px;
+  height: 277px;
+  margin: 10px;
+  margin-top: 20px;
+  border-radius: 10px;
+  font-family:'Segoe UI';
+  font-weight: bolder;
+  font-size: 30px;
+  border: 5px dotted #6D5B76;
+}
+
+.addCampusButton:hover {
+  background-color: burlywood;
+  color: darkslategray;
+}
+
+.addCampusButton:active, .addStudentButton:active {
+  transform: scale(.8,.8);
+}
+
+.campus {
+  cursor: pointer;
+  background-color: #6D5B76;
+  width: 300px;
+  height: 260px;
+  border-radius: 10px;
+}
+
+.campus:hover {
+  background-color: burlywood;
+}
+
+.campus > h3 {
+  font-family:'Segoe UI';
+  color:#F8F8E5;
+  margin-left: 20px;
+}
+
+.campus:hover > h3 {
+  margin-left: 0;
+  color: darkslategray;
+  text-align: center;
+  font-weight: 1000;
+}
+
+.campus > img {
+  border-top: 5px solid burlywood;;
+  object-fit: cover;
+}
+
+.campusForm, .studentForm {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.formButtons {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.imgSubmit {
+  font-size: large;
+  font-weight: bold;
+  border: 3px dotted #6D5B76;
+  border-radius: 5px;
+  background-color: #c4bfe3;
+  color: #986f95;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.imgButton {
+  font-size: large;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.submit {
+  width: 150px;
+  font-size: large;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.singleButton {
+  background-color: #986f95;
+  color: #F8F8E5;
+  width: 150px;
+  font-size: x-large;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.submit:hover, .singleButton:hover {
+  background-color: burlywood;
+  color: darkslategray;
+}
+
+label {
+  margin: 10px;
+  font-size: 20px;
+  max-width: 700px;
+}
+
+label > div {
+  font-weight: bold;
+}
+
+.campusText {
+  margin: 5px 40px 5px 40px;
+  font-size: 20px;
+}
+
+.sButton {
+  font-size: 30px;
+  font-family:'Segoe UI';
+  font-weight: bold;
+  padding: 5px;
+  padding-right: 20px;
+  margin: 5px;
+  text-transform: capitalize;
+  border-radius: 10px;
+  color: #986f95;
+  cursor: pointer;
+}
+
+.sButtonInCampus {
+  font-size: 30px;
+  font-family:'Segoe UI';
+  font-weight: bold;
+  padding: 5px;
+  padding-right: 20px;
+  margin: 5px;
+  margin-right: 0;
+  text-transform: capitalize;
+  border-radius: 10px 0px 0px 10px;
+  border-right: none;
+  color: #986f95;
+  cursor: pointer;
+}
+
+.dButton {
+  font-size: 30px;
+  font-family:'Segoe UI';
+  font-weight: bold;
+  padding: 5px 20px;
+  margin: 5px;
+  margin-left: 0;
+  text-transform: capitalize;
+  border-radius: 0px 10px 10px 0px;
+  border-left: dotted ;
+  color: #986f95;
+  cursor: pointer;
+}
+
+.addButton {
+    margin: 5px;
+    margin-left: 0;
+    font-Size: 18px;
+    border-Radius: 10px;
+    padding: 5px 15px;
+}
+
+.sButton:hover, .dButton:hover, .sButtonInCampus:hover, .addButton:hover {
+  background-color: #986f95;
+  color: #F8F8E5;
 }

@@ -10,6 +10,8 @@ const SingleCampus = (state, action) => {
     switch (action.type) {
         case CampusType.FETCH_CAMPUS:
             return action.payload;
+        case CampusType.CREATE_NEW_CAMPUS:
+            return action.payload;
         
         default:
             return null;
