@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { createNewStudentThunk } from '../redux/students/studentActions';
 import { fetchAllCampusThunk } from '../redux/campuses/campusesActions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,8 +8,10 @@ import validator from 'validator';
 function AddStudent() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const ref = useRef(null);
     const student = useSelector((state) => state.singleStudent);
     const allCampus = useSelector((state) => state.campus.allCampus);
+    const [image, setImage] = useState("");
     const [state, setState] = useState({
         firstName: "",
         lastName: "",
@@ -17,7 +19,6 @@ function AddStudent() {
         email: "",
         gpa: 0.0,
         campusId: null,
-        image: "https://www.st-andrews.ac.uk/dpl/1.1.0/assets/docs/images/placeholders/200x200.jpg",
     });
 
     //sort campus into alphabetic order by name
@@ -75,17 +76,43 @@ function AddStudent() {
     
 
     //when submit is click
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         console.log("Submitting...", state);
         e.preventDefault();
         
+        //alert the user for changes if any error are caught
+        //Validator checks if state.email is a valid email
         if(!validator.isEmail(state.email)){
             alert("Not A Valid Email. Please Enter A Valid Email.");
         } else if(state.firstName==="" || state.lastName==="" || state.email==="" || state.campus===""){
             alert("One or More fields is empty, please fill them out.");
         } else {
+
+            //generate image url from cloudinary is an image is uploaded
+            let imgUrl ="https://www.st-andrews.ac.uk/dpl/1.1.0/assets/docs/images/placeholders/200x200.jpg"
+            if(image !== ""){
+                const data = new FormData();
+                data.append("file", image);
+                data.append("upload_preset", process.env.REACT_APP_CLOUDINARY_PRESET);
+                data.append("cloud_name", process.env.REACT_APP_CLOUDINARY_NAME);
+                
+                await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_NAME}/image/upload`, {
+                    method: "post",
+                    body: data
+                })
+                .then((res) => res.json())
+                .then((data) => {
+                    //console.log(data.secure_url);
+                    
+                    imgUrl = data.secure_url;
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+            }
+
             console.log("Successfully dispatch to CreateNewStudentThunk");
-            dispatch(createNewStudentThunk(state));
+            dispatch(createNewStudentThunk({...state, image: imgUrl}));
         }
 
     };
@@ -221,6 +248,19 @@ function AddStudent() {
                  type='text' 
                  value={state.quote} 
                  onChange={handleChange} />
+            </label>
+
+            <label>
+                <div style={{marginLeft: '15px'}} >
+                    Upload Image: &nbsp;&nbsp;
+                    <input className="imgSubmit" id="imgSub" ref={ref} type="file" onChange={(e) => setImage(e.target.files[0])}/>
+                    <input className="imgButton" type='button' value="Cancel Image" onClick={(e) => {
+                        console.log(ref.current.value);
+                        ref.current.value=null;
+                        console.log(ref.current.value);
+                        setImage("");
+                    }}  />
+                </div>
             </label>
             
             <div className="formButtons">

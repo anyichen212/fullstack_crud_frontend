@@ -225,6 +225,22 @@ li{
   text-align: center;
 }
 
+.imgSubmit {
+  font-size: large;
+  font-weight: bold;
+  border: 3px dotted #6D5B76;
+  border-radius: 5px;
+  background-color: #c4bfe3;
+  color: #986f95;
+}
+
+.imgButton {
+  font-size: large;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 5px;
+}
+
 .submit {
   width: 150px;
   font-size: large;

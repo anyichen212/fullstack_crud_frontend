@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createNewCampusThunk } from '../redux/campuses/campusesActions';
 import { useNavigate } from 'react-router-dom';
-import UploadWidget from '../components/UploadWidget';
 
 function AddCampus() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const ref = useRef(null);
     const campus = useSelector((state) => state.singleCampus);
     const allCampus = useSelector((state) => state.campus.allCampus);
     const [image, setImage] = useState("");
@@ -44,6 +44,7 @@ function AddCampus() {
             }
         }
 
+        //alert the user for changes if any error are caught
         if(nameExist){
             alert("Campus with the same name already exist in the system, please choose another name. (Example: 'campus2')")
         } else if(state.name === "" || state.address ==="" || state.city ==="" || state.state ==="" || state.country ===""){
@@ -52,6 +53,7 @@ function AddCampus() {
             alert("Not A Valid Zip Code, please make sure it's a 5 digit code.");
         } else {
 
+            //upload image to cloudinary and update the cloudinary link to the DB
             let imgUrl ="https://www.brooklyn.edu/wp-content/uploads/NEWS-Default-1-Featured.jpg"
             if(image !== ""){
                 const data = new FormData();
@@ -218,7 +220,16 @@ function AddCampus() {
                 onChange={handleChange} 
                 />
             </label>
-            <div><input type="file" onChange={(e) => setImage(e.target.files[0])}/></div>
+            <label>
+                <div style={{marginLeft: '15px'}} >
+                    Upload Image: &nbsp;&nbsp;
+                    <input className="imgSubmit" type="file" ref={ref} onChange={(e) => setImage(e.target.files[0])}/>
+                    <input className="imgButton" type='button' value="Cancel Image" onClick={(e) => {
+                        ref.current.value=null;
+                        setImage("");
+                    }}  />
+                </div>
+            </label>
             <div className="formButtons">
                 <input className="submit" type='submit' value="Submit" />
                 <input className="submit" type='button' value="Back" onClick={backButton} />
