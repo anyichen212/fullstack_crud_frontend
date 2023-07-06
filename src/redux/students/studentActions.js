@@ -94,3 +94,24 @@ export const deleteStudentThunk = (id) => {
         
     }
 };
+
+//edit student
+export const editStudent = () => {
+    console.log("editStudent Action");
+
+    return {
+        type: StudentType.EDIT_STUDENT
+    }
+}
+
+export const editStudentThunk = (form, id) => {
+    return async(dispatch) => {
+        try {
+            const editStudent = await axios.put(`http://localhost:8080/api/student/${id}`, form);
+            dispatch(editStudent());
+            console.log("editStudentThunk sucess");
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}

@@ -15,6 +15,7 @@ import EditCampus from './pages/EditCampus';
 import AddStudent from './pages/AddStudent';
 import Navigate from './components/Navigate';
 import Footer from './components/Footer';
+import EditStudent from './pages/EditStudent';
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/addcampus" element={<AddCampus />} />
         <Route path="/addstudent" element={<AddStudent />} />
         <Route path="/campus/:campusid/edit" element={<EditCampus />} />
+        <Route path="/students/:studentid/edit" element={<EditStudent />} />
         <Route path="/students/:studentid" element={<Student />}/>
         <Route path="*" element={<Error />} />
       </Routes>

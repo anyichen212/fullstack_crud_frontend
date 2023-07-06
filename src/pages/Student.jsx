@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { deleteStudentThunk, fetchStudentThunk } from '../redux/students/studentActions';
+import { deleteStudentThunk, editStudent, fetchStudentThunk } from '../redux/students/studentActions';
 import { MdHome } from 'react-icons/md';
 
 import Error from './Error';
@@ -24,10 +24,16 @@ function Student() {
     fetchStudent();
   }, []);
 
+  //delete studen, click to delete and navigate to new allStudent page
   const deleteStudent = () => {
     console.log(`deleting student ${studentid}...`);
     dispatch(deleteStudentThunk(studentid));
     navigate("/students");
+  }
+
+  const editStudent = () => {
+    console.log(`editing student ${studentid}...`);
+    navigate(`/students/${student.id}/edit`);
   }
 
   //redirect to campus
@@ -46,7 +52,7 @@ function Student() {
         <h1>Student Profile</h1>
         <img style={{height:"350px", width:'325px', objectFit:'cover'}} src={student.image} alt="student photo"/>
         <div>
-          <button className="singleButton" >Edit</button>
+          <button className="singleButton" onClick={editStudent} >Edit</button>
           <button className="singleButton" onClick={deleteStudent}>Delete</button>
         </div>
 
